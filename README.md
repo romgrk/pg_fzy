@@ -27,3 +27,7 @@ select name, fzy('Stev', "name"::cstring) as score from users;
 
 Uses the case-insensitive version of fzy for now. Open an issue if you need
 the case sensitive version.
+
+### License
+
+MIT

@@ -1,11 +1,5 @@
-/*-------------------------------------------------------------------------
- *
- * stat.c
- *
- * Copyright (c) 2008-2018, PostgreSQL Global Development Group
- *
- * IDENTIFICATION
- *        contrib/pg_log/log.c
+/*
+ * fzy.c
  */
 
 #include "postgres.h"
