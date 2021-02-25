@@ -10,28 +10,16 @@
 
 #include "postgres.h"
 
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "access/hash.h"
-#include "catalog/pg_authid.h"
-#include "executor/instrument.h"
 #include "funcapi.h"
-#include "mb/pg_wchar.h"
-#include "miscadmin.h"
-#include "parser/analyze.h"
-#include "parser/parsetree.h"
-#include "parser/scanner.h"
-#include "parser/scansup.h"
-#include "pgstat.h"
-#include "storage/fd.h"
-#include "storage/ipc.h"
-#include "storage/spin.h"
-#include "tcop/utility.h"
-#include "utils/acl.h"
-#include "utils/builtins.h"
-#include "utils/memutils.h"
+#include "fzy_native/src/match.c"
 
 PG_MODULE_MAGIC;
 
@@ -42,7 +30,10 @@ Datum fzy(PG_FUNCTION_ARGS) {
     char *needle   = PG_GETARG_CSTRING(0);
     char *haystack = PG_GETARG_CSTRING(1);
 
+    int32_t result = 0;
+    if (has_match(needle, haystack, 1))
+        result = (int32_t)(match(needle, haystack, 1) * 1000);
 
-    return 0;
+    PG_RETURN_INT32(result);
 }
 
