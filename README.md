@@ -17,3 +17,5 @@ make
 sudo make install
 ```
 
+Requires `pg_config` to be installed.
+
