@@ -31,8 +31,8 @@ Datum fzy(PG_FUNCTION_ARGS) {
     char *haystack = PG_GETARG_CSTRING(1);
 
     int32_t result = 0;
-    if (has_match(needle, haystack, 1))
-        result = (int32_t)(match(needle, haystack, 1) * 1000);
+    if (has_match(needle, haystack, 0))
+        result = (int32_t)(match(needle, haystack, 0) * 1000);
 
     PG_RETURN_INT32(result);
 }
