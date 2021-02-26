@@ -19,6 +19,10 @@ sudo make install
 
 Requires `pg_config` to be installed.
 
+```
+psql> CREATE EXTENSION fzy;
+```
+
 ### Usage
 
 ```
