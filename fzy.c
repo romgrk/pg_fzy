@@ -15,6 +15,11 @@
 #include "funcapi.h"
 #include "fzy_native/src/match.c"
 
+#ifndef unlikely
+#define unlikely(x) __builtin_expect((x), 0)
+#endif
+
+
 PG_MODULE_MAGIC;
 
 Datum fzy(PG_FUNCTION_ARGS);
@@ -26,10 +31,13 @@ Datum fzy(PG_FUNCTION_ARGS) {
 
     int32_t result = 0;
 
-    if (strcasecmp(needle, haystack) == 0)
-        result = INT32_MAX;
-    else if (has_match(needle, haystack, 0))
-        result = (int32_t)(match(needle, haystack, 0) * 1000);
+    if (has_match(needle, haystack, 0)) {
+        if (unlikely(strcasecmp(needle, haystack) == 0)) {
+            result = INT32_MAX;
+        } else {
+            result = (int32_t)(match(needle, haystack, 0) * 1000);
+        }
+    }
 
     PG_RETURN_INT32(result);
 }
