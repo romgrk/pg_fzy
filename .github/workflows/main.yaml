@@ -11,17 +11,25 @@ jobs:
             arch: x86
           - os: ubuntu-20.04
             arch: x86
-          - os: ubuntu-18.04
+            pg_version: 13
+          - os: ubuntu-20.04
             arch: x86
+            pg_version: 12
     steps:
       - uses: actions/checkout@v2
       - run: git submodule update --init --recursive
+
       - if: matrix.os == 'macos-latest'
         run: brew install libpq postgresql
-      - if: matrix.os == 'ubuntu-18.04'
-        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-all
-      - if: matrix.os == 'ubuntu-20.04'
-        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-all
+
+      - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '13'
+        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-13
+
+      - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '12'
+        run: sudo apt uninstall postgresql libpq-dev
+      - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '12'
+        run: sudo apt install libpq-dev=12.6-0ubuntu0.20.04.1 postgresql=12+214ubuntu0.1 postgresql-contrib=12+214ubuntu0.1 postgresql-server-dev-12
+
       - run: make
       - run: ls -l
       - run: git status
