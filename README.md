@@ -1,7 +1,20 @@
 
 # pg_fzy
 
-FZY extension for PostgreSQL.
+FZY extension for PostgreSQL. You can either use the pre-compiled binaries, or build from source.
+
+### Pre-compiled binaries
+
+Pre-compiled binaries are available for the following systems:
+ - Linux x86_64, Postgtres 13
+ - Linux x86_64, Postgtres 12
+ - macOS x86_64, Postgtres 12
+
+To make use of it, run:
+
+```
+make restore_precompiled_binary
+```
 
 ### Building
 
