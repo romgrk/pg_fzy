@@ -5,7 +5,22 @@ FZY extension for PostgreSQL.
 
 ### Building
 
-Linux x86_64 shared library built by default.
+Requires postgresql development headers.
+
+<details>
+  <summary>Linux</summary>
+  <p>
+    Install headers through your package manager.<br/>
+    Ubuntu: <code>sudo apt install postgresql-server-dev-XX</code><br/>
+  </p>
+</details>
+
+<details>
+  <summary>macOS</summary>
+  <p>
+    brew: <code>brew install libpq</code><br/>
+  </p>
+</details>
 
 ```
 make
