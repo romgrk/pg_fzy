@@ -19,4 +19,5 @@ jobs:
         run: apt install libpq-dev postgresql postgresql-contrib
       - run: make
       - run: ls -l
+      - run: git status
       - run: file fzy.so
