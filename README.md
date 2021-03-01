@@ -8,7 +8,7 @@ FZY extension for PostgreSQL. You can either use the pre-compiled binaries, or b
 Pre-compiled binaries are available for the following systems:
  - Linux x86_64, Postgtres 13
  - Linux x86_64, Postgtres 12
- - macOS x86_64, Postgtres 12
+ - macOS x86_64, Postgtres 13
 
 To make use of it, run:
 
