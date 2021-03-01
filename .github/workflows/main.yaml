@@ -31,12 +31,8 @@ jobs:
         run: sudo apt install libpq5=12.6-0ubuntu0.20.04.1 libpq-dev=12.6-0ubuntu0.20.04.1 postgresql=12+214ubuntu0.1 postgresql-contrib=12+214ubuntu0.1 postgresql-server-dev-12
 
       - run: make
-      - run: ls -l
-      - run: git status
-      - run: file fzy.so
       - run: make stash_precompiled_binary
-      - run: rm -f *.o
-      - run: rm -f *.bc
+      - run: make clean
       - uses: romgrk/publish-to-github@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
