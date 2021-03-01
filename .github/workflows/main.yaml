@@ -13,6 +13,7 @@ jobs:
             arch: x86
     steps:
       - uses: actions/checkout@v2
+      - run: git submodule update --init --recursive
       - if: matrix.os == 'macos-latest'
         run: brew install libpq postgresql
       - if: matrix.os == 'ubuntu-20.04'
