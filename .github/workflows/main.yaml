@@ -26,9 +26,9 @@ jobs:
         run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-13
 
       - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '12'
-        run: sudo apt remove postgresql libpq-dev
+        run: sudo apt remove postgresql libpq-dev libpq5
       - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '12'
-        run: sudo apt install libpq-dev=12.6-0ubuntu0.20.04.1 postgresql=12+214ubuntu0.1 postgresql-contrib=12+214ubuntu0.1 postgresql-server-dev-12
+        run: sudo apt install libpq5=12.6-0ubuntu0.20.04.1 libpq-dev=12.6-0ubuntu0.20.04.1 postgresql=12+214ubuntu0.1 postgresql-contrib=12+214ubuntu0.1 postgresql-server-dev-12
 
       - run: make
       - run: ls -l
