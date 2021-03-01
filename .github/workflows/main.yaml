@@ -11,14 +11,24 @@ jobs:
             arch: x86
           - os: ubuntu-20.04
             arch: x86
+          - os: ubuntu-18.04
+            arch: x86
     steps:
       - uses: actions/checkout@v2
       - run: git submodule update --init --recursive
       - if: matrix.os == 'macos-latest'
         run: brew install libpq postgresql
+      - if: matrix.os == 'ubuntu-18.04'
+        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-all
       - if: matrix.os == 'ubuntu-20.04'
-        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-13
+        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-all
       - run: make
       - run: ls -l
       - run: git status
       - run: file fzy.so
+      - run: make stash_precompiled_binary
+      - run: rm -f *.o
+      - run: rm -f *.bc
+      - uses: romgrk/publish-to-github@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
