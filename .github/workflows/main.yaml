@@ -1,0 +1,20 @@
+name: main
+on: [push]
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}-${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            arch: x86
+    steps:
+      - uses: actions/checkout@v2
+      - if: matrix.os == 'macos-latest'
+        run:
+          - brew install libpq
+          - brew install postgresql
+      - run: make
+      - run: ls -l
+      - run: file fzy.so
