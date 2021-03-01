@@ -9,14 +9,14 @@ jobs:
         include:
           - os: macos-latest
             arch: x86
-          - os: ubuntu-latest
+          - os: ubuntu-20.04
             arch: x86
     steps:
       - uses: actions/checkout@v2
       - if: matrix.os == 'macos-latest'
         run: brew install libpq postgresql
-      - if: matrix.os == 'ubuntu-latest'
-        run: sudo apt install libpq-dev postgresql postgresql-contrib
+      - if: matrix.os == 'ubuntu-20.04'
+        run: sudo apt install libpq-dev postgresql postgresql-contrib postgresql-server-dev-12
       - run: make
       - run: ls -l
       - run: git status
