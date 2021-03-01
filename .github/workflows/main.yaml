@@ -9,8 +9,8 @@ jobs:
         include:
           - os: macos-latest
             arch: x86
-          # - os: ubuntu-latest
-            # arch: x86
+          - os: ubuntu-latest
+            arch: x86
     steps:
       - uses: actions/checkout@v2
       - if: matrix.os == 'macos-latest'
