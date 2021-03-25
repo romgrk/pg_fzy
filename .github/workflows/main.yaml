@@ -30,8 +30,18 @@ jobs:
 
       - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '12'
         run: sudo apt remove postgresql libpq-dev libpq5
+
       - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '12'
         run: sudo apt install libpq5=12.6-0ubuntu0.20.04.1 libpq-dev=12.6-0ubuntu0.20.04.1 postgresql=12+214ubuntu0.1 postgresql-contrib=12+214ubuntu0.1 postgresql-server-dev-12
+
+      - if: matrix.os == 'ubuntu-20.04' && matrix.pg_version == '11'
+        run: |
+          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          RELEASE=$(lsb_release -cs) echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list
+          cat /etc/apt/sources.list.d/pgdg.list
+          sudo apt update
+          sudo apt -y install postgresql-11 libpq5@11.10.1 libpq-dev@11.10.1
+
 
       - run: make
       - run: make stash_precompiled_binary
