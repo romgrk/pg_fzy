@@ -15,6 +15,9 @@ jobs:
           - os: ubuntu-20.04
             arch: x86
             pg_version: 12
+          - os: ubuntu-20.04
+            arch: x86
+            pg_version: 11
     steps:
       - uses: actions/checkout@v2
       - run: git submodule update --init --recursive
